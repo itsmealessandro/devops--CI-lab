@@ -1,7 +1,5 @@
+#INFO: this file is where the models strucutre are defined and then they will be migrated to DB
 from django.db import models
-
-# Create your models here.
-
 
 class Vet(models.Model):
     first_name = models.CharField(max_length=30)

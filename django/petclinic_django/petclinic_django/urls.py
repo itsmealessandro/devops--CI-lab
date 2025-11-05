@@ -16,8 +16,19 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from petclinic.views import OwnerViewSet, PetViewSet, VetViewSet, VisitViewSet, TypeViewSet, SpecialtyViewSet
+
+router = DefaultRouter()
+router.register(r'owners', OwnerViewSet)
+router.register(r'pets', PetViewSet)
+router.register(r'vets', VetViewSet)
+router.register(r'visits', VisitViewSet)
+router.register(r'types', TypeViewSet)
+router.register(r'specialties', SpecialtyViewSet)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path('', include(router.urls)),
 ]
