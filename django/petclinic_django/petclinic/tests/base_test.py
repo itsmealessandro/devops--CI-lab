@@ -1,4 +1,6 @@
-# petclinic/tests/base_test.py
+""" NOTE: Every time this test suite starts, Django generates a new empty temporary DB """
+# query methods docs: https://docs.djangoproject.com/en/5.2/ref/models/querysets/
+
 from rest_framework.test import APITestCase
 from petclinic.models import Owner, Pet, Vet, Specialty, Visit, Type
 
