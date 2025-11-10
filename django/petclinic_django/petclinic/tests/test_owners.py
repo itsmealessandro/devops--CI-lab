@@ -13,6 +13,13 @@ class OwnerTests(BaseTestCase):
         owner = self.create_owner()
         self.assertEqual(owner.id, 1) # id starts from 1 in djangoDB
 
+
+    def test_read_owner(self):
+        print("-------------- read owner --------------")
+
+
+
+
     def test_update_owner(self):
         print("-------------- update owner --------------")
         FIRST_NAME = "MARIO_UPDATED"
@@ -53,20 +60,7 @@ class OwnerTests(BaseTestCase):
         querySet = Owner.objects.filter(id=owner.id)
         querySet.delete()
 
-        print("before referesh owner")
-
         try:
             owner.refresh_from_db()
         except Owner.DoesNotExist:
             print("owner deleted correctly")
-
-
-
-
-
-
-
-
-
-
-
