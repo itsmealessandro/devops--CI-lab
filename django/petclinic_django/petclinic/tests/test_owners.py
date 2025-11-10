@@ -1,6 +1,7 @@
 from petclinic.tests.base_test import BaseTestCase
 from petclinic.models import Owner
-
+""" CRUD testing for owner """
+""" test functionts runs in an lexicographic order"""
 class OwnerTests(BaseTestCase):
 
     def test_create_owner(self):
@@ -10,12 +11,10 @@ class OwnerTests(BaseTestCase):
 
         print("-------------- create owner --------------")
         owner = self.create_owner()
-        self.assertEqual(owner.first_name, "Mario")
+        self.assertEqual(owner.id, 1) # id starts from 1 in djangoDB
 
     def test_update_owner(self):
-
         print("-------------- update owner --------------")
-        print("update owner")
         FIRST_NAME = "MARIO_UPDATED"
         LAST_NAME = "ROSSI_UPDATED"
         ADDRESS = "ADDRESS_UPDATED"
