@@ -47,4 +47,26 @@ class OwnerTests(BaseTestCase):
         self.assertEqual(owner.telephone, TELEPHONE)
 
 
+    def test_delete_owner(self):
+        print("-------------- delete owner --------------")
+        owner= self.create_owner();
+        querySet = Owner.objects.filter(id=owner.id)
+        querySet.delete()
+
+        print("before referesh owner")
+
+        try:
+            owner.refresh_from_db()
+        except Owner.DoesNotExist:
+            print("owner deleted correctly")
+
+
+
+
+
+
+
+
+
+
 
