@@ -19,6 +19,12 @@ class PetTests(BaseTestCase):
 
     def test_read_pet(self):
         print("-------------- read pet --------------")
+        pet = self.create_pet()
+        read_pet = Pet.objects.get(id=pet.id)
+        self.assertEqual(read_pet.name, pet.name)
+        self.assertEqual(str(read_pet.birth_date), str(pet.birth_date))
+        self.assertEqual(read_pet.type.id, pet.type.id)
+        self.assertEqual(read_pet.owner.id, pet.owner.id)
 
 
     def test_update_pet(self):

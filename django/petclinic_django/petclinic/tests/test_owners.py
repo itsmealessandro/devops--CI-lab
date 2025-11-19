@@ -16,6 +16,13 @@ class OwnerTests(BaseTestCase):
 
     def test_read_owner(self):
         print("-------------- read owner --------------")
+        owner = self.create_owner()
+        read_owner = Owner.objects.get(id=owner.id)
+        self.assertEqual(read_owner.first_name, owner.first_name)
+        self.assertEqual(read_owner.last_name, owner.last_name)
+        self.assertEqual(read_owner.address, owner.address)
+        self.assertEqual(read_owner.city, owner.city)
+        self.assertEqual(read_owner.telephone, owner.telephone)
 
 
 
