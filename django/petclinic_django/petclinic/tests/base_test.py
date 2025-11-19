@@ -2,7 +2,7 @@
 # query methods docs: https://docs.djangoproject.com/en/5.2/ref/models/querysets/
 
 from rest_framework.test import APITestCase
-from petclinic.models import Owner, Pet, Vet, Specialty, Visit, Type
+from petclinic.models import Owner, Pet, Vet, Specialty, Visit, Type, VetSpecialty, User, Role
 
 class BaseTestCase(APITestCase):
     """
@@ -51,3 +51,22 @@ class BaseTestCase(APITestCase):
             visit_date="2024-01-01",
             description=description
         )
+
+    # --- Vet Specialty ---
+    def create_vet_specialty(self, vet=None, specialty=None):
+        vet = vet or self.create_vet()
+        specialty = specialty or self.create_specialty()
+        return VetSpecialty.objects.create(vet=vet, specialty=specialty)
+
+    # --- User ---
+    def create_user(self, username="testuser", password="password", enabled=True):
+        return User.objects.create(
+            username=username,
+            password=password,
+            enabled=enabled
+        )
+
+    # --- Role ---
+    def create_role(self, user=None, role="ROLE_USER"):
+        user = user or self.create_user()
+        return Role.objects.create(username=user, role=role)
