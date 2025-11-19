@@ -60,7 +60,5 @@ class OwnerTests(BaseTestCase):
         querySet = Owner.objects.filter(id=owner.id)
         querySet.delete()
 
-        try:
-            owner.refresh_from_db()
-        except Owner.DoesNotExist:
-            print("owner deleted correctly")
+        with self.assertRaises(Owner.DoesNotExist):
+            Owner.objects.get(id=owner.id)
