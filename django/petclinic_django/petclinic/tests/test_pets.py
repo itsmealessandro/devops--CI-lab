@@ -8,17 +8,13 @@ from petclinic.models import Pet
 
 class PetTests(BaseTestCase):
     def test_create_pet(self):
-
-        print("######################################")
-        print("PET TESTING")
-
-        print("-------------- create pet --------------")
+        """Test that a Pet instance can be created with valid data."""
         pet = self.create_pet()
         self.assertEqual(pet.id, 1) # id starts from 1 in djangoDB
 
 
     def test_read_pet(self):
-        print("-------------- read pet --------------")
+        """Test retrieving a Pet instance from the database."""
         pet = self.create_pet()
         read_pet = Pet.objects.get(id=pet.id)
         self.assertEqual(read_pet.name, pet.name)
@@ -28,29 +24,24 @@ class PetTests(BaseTestCase):
 
 
     def test_update_pet(self):
-        print("-------------- update pet --------------")
-        NAME = "FIDO_UPDATED"
-        BIRTH_DATE = "2020-01-01"
+        """Test updating a Pet's attributes."""
+        updated_name = "Fido Updated"
+        updated_birth_date = "2020-01-01"
         pet = self.create_pet()
-        print("old pet:")
-        print(pet)
-        querySet = Pet.objects.filter(id=pet.id)
-        querySet.update(
-            name=NAME,
-            birth_date=BIRTH_DATE
+        Pet.objects.filter(id=pet.id).update(
+            name=updated_name,
+            birth_date=updated_birth_date
         )
 
         # Refresh instance from DB to get updated values
         pet.refresh_from_db()
 
-        print("pet after refresh_from_db")
-        print(pet)
-        self.assertEqual(pet.name, NAME)
-        self.assertEqual(str(pet.birth_date), BIRTH_DATE)
+        self.assertEqual(pet.name, updated_name)
+        self.assertEqual(str(pet.birth_date), updated_birth_date)
 
 
     def test_delete_pet(self):
-        print("-------------- delete pet --------------")
+        """Test deleting a Pet instance."""
         pet= self.create_pet();
         querySet = Pet.objects.filter(id=pet.id)
         querySet.delete()
