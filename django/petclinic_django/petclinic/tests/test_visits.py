@@ -3,37 +3,35 @@ from petclinic.models import Visit
 
 class VisitTests(BaseTestCase):
     def test_create_visit(self):
-        print("######################################")
-        print("VISIT TESTING")
-        print("-------------- create visit --------------")
+        """Test that a Visit instance can be created with valid data."""
         visit = self.create_visit()
         self.assertEqual(visit.description, "Regular checkup")
         self.assertEqual(str(visit.visit_date), "2024-01-01")
 
     def test_read_visit(self):
-        print("-------------- read visit --------------")
+        """Test retrieving a Visit instance from the database."""
         visit = self.create_visit()
         read_visit = Visit.objects.get(id=visit.id)
         self.assertEqual(read_visit.description, visit.description)
         self.assertEqual(read_visit.pet.id, visit.pet.id)
 
     def test_update_visit(self):
-        print("-------------- update visit --------------")
-        DESCRIPTION = "Emergency visit"
-        VISIT_DATE = "2024-02-15"
+        """Test updating a Visit's attributes."""
+        updated_description = "Emergency visit"
+        updated_visit_date = "2024-02-15"
         visit = self.create_visit()
         
         Visit.objects.filter(id=visit.id).update(
-            description=DESCRIPTION,
-            visit_date=VISIT_DATE
+            description=updated_description,
+            visit_date=updated_visit_date
         )
         
         visit.refresh_from_db()
-        self.assertEqual(visit.description, DESCRIPTION)
-        self.assertEqual(str(visit.visit_date), VISIT_DATE)
+        self.assertEqual(visit.description, updated_description)
+        self.assertEqual(str(visit.visit_date), updated_visit_date)
 
     def test_delete_visit(self):
-        print("-------------- delete visit --------------")
+        """Test deleting a Visit instance."""
         visit = self.create_visit()
         Visit.objects.filter(id=visit.id).delete()
         

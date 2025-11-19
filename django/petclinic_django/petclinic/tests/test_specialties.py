@@ -3,30 +3,28 @@ from petclinic.models import Specialty
 
 class SpecialtyTests(BaseTestCase):
     def test_create_specialty(self):
-        print("######################################")
-        print("SPECIALTY TESTING")
-        print("-------------- create specialty --------------")
+        """Test that a Specialty instance can be created with valid data."""
         specialty = self.create_specialty()
         self.assertEqual(specialty.name, "Surgery")
 
     def test_read_specialty(self):
-        print("-------------- read specialty --------------")
+        """Test retrieving a Specialty instance from the database."""
         specialty = self.create_specialty()
         read_specialty = Specialty.objects.get(id=specialty.id)
         self.assertEqual(read_specialty.name, specialty.name)
 
     def test_update_specialty(self):
-        print("-------------- update specialty --------------")
-        NAME = "Cardiology"
+        """Test updating a Specialty's attributes."""
+        updated_name = "Cardiology"
         specialty = self.create_specialty()
         
-        Specialty.objects.filter(id=specialty.id).update(name=NAME)
+        Specialty.objects.filter(id=specialty.id).update(name=updated_name)
         
         specialty.refresh_from_db()
-        self.assertEqual(specialty.name, NAME)
+        self.assertEqual(specialty.name, updated_name)
 
     def test_delete_specialty(self):
-        print("-------------- delete specialty --------------")
+        """Test deleting a Specialty instance."""
         specialty = self.create_specialty()
         Specialty.objects.filter(id=specialty.id).delete()
         

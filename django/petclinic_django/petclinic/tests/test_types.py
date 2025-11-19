@@ -3,30 +3,28 @@ from petclinic.models import Type
 
 class TypeTests(BaseTestCase):
     def test_create_type(self):
-        print("######################################")
-        print("TYPE TESTING")
-        print("-------------- create type --------------")
+        """Test that a Type instance can be created with valid data."""
         pet_type = self.create_type()
         self.assertEqual(pet_type.name, "Dog")
 
     def test_read_type(self):
-        print("-------------- read type --------------")
+        """Test retrieving a Type instance from the database."""
         pet_type = self.create_type()
         read_type = Type.objects.get(id=pet_type.id)
         self.assertEqual(read_type.name, pet_type.name)
 
     def test_update_type(self):
-        print("-------------- update type --------------")
-        NAME = "Cat"
+        """Test updating a Type's attributes."""
+        updated_name = "Cat"
         pet_type = self.create_type()
         
-        Type.objects.filter(id=pet_type.id).update(name=NAME)
+        Type.objects.filter(id=pet_type.id).update(name=updated_name)
         
         pet_type.refresh_from_db()
-        self.assertEqual(pet_type.name, NAME)
+        self.assertEqual(pet_type.name, updated_name)
 
     def test_delete_type(self):
-        print("-------------- delete type --------------")
+        """Test deleting a Type instance."""
         pet_type = self.create_type()
         Type.objects.filter(id=pet_type.id).delete()
         
