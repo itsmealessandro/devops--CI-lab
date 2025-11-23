@@ -14,7 +14,7 @@ the following is the basic nodeJS project structure:
 └── tsconfig.json
 ```
 
-## Comparison with Spring application
+## Comparing structure with Spring application
 ### POM
 `package.json` is like the POM, it defines the dependencies of the project.
 It also include some basic scripts like `start, build, test`.
@@ -30,3 +30,19 @@ It also include some basic scripts like `start, build, test`.
 `node_modules/` is the directory that contains all the installed dependencies like the `.m2/repository` of Spring but local in the directory.
 ### src and test
 The main code and the tests.
+## Comparing decorators with Spring application
+In the `app.module.ts` are defined some decorators that are conceptually similar to spring ones.
+
+``` typescript
+@Module({
+  controllers: [UsersController],
+  providers: [UsersService],
+  exports: [UsersService],
+})
+```
+```
+```
+
+`controllers`: `@RestController` HTTP request handlers.
+`providers`: `@Service|@Repository|@Component` contains the logic of the application.
+`exports`: `@Bean` shared the function that the component providers with the others.
