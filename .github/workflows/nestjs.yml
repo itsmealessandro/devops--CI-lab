@@ -19,10 +19,10 @@ jobs:
         with: 
           node-version: 22 # latest LTS
           cache: 'npm'
+          cache-dependency-path: nestJS/package-lock.json
 
 
       - name: Install dependencies
-        working-directory: nestJS/petclinic_nestjs
         run: npm ci
 
       - name: Run lint
