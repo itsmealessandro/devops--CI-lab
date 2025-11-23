@@ -3,11 +3,11 @@ name: Django CI
 on:
   push:
     branches: [ "main" ]
-    path:
+    paths:
       - 'django/**'
   pull_request:
     branches: [ "main" ]
-    path:
+    paths:
       - 'django/**'
 
 jobs:
