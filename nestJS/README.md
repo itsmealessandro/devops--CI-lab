@@ -1,5 +1,5 @@
 # NestJS project structure
-the following is the basic nodeJS project structure:
+the following is the basic nestJS project structure:
 
 ```bash
 .
