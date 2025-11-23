@@ -40,9 +40,9 @@ In the `app.module.ts` are defined some decorators that are conceptually similar
   exports: [UsersService],
 })
 ```
-```
-```
 
 `controllers`: `@RestController` HTTP request handlers.
+
 `providers`: `@Service|@Repository|@Component` contains the logic of the application.
+
 `exports`: `@Bean` shared the function that the component providers with the others.
