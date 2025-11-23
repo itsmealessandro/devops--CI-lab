@@ -22,7 +22,7 @@ jobs:
 
 
       - name: Install dependencies
-        working-directory: nestJS
+        working-directory: nestJS/petclinic_nestjs
         run: npm ci
 
       - name: Run lint
