@@ -20,9 +20,9 @@ jobs:
           node-version: 22 # latest LTS
           cache: 'npm'
 
-        working-directory: nestJS
 
       - name: Install dependencies
+        working-directory: nestJS
         run: npm ci
 
       - name: Run lint
