@@ -1,4 +1,4 @@
-name: nestJS
+name: NestJS CI
 
 on:
   pull_request:
@@ -10,17 +10,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: nestJS/petclinic_nestjs
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        with: 
-          node-version: 22 # latest LTS
+        with:
+          node-version: 22
           cache: 'npm'
-          cache-dependency-path: nestJS/package-lock.json
-
+          cache-dependency-path: nestJS/petclinic_nestjs/package-lock.json
 
       - name: Install dependencies
         run: npm ci
