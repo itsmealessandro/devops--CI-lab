@@ -22,8 +22,9 @@ async function bootstrap() {
   // This method setups the swagger docs in the specified PATH
   const SWAGGER_DOCS_PATH = "api"
   SwaggerModule.setup(SWAGGER_DOCS_PATH, app, documentFactory)
+  // swagger configuration ends
 
-  // To starts the application
+  // To let the application listen on port X
   await app.listen(process.env.PORT ?? 3000);
 }
 bootstrap();
