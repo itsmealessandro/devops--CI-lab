@@ -46,3 +46,37 @@ In the `app.module.ts` are defined some decorators that are conceptually similar
 `providers`: `@Service|@Repository|@Component` contains the logic of the application.
 
 `exports`: `@Bean` shared the function that the component providers with the others.
+
+## Services, Controllers, DTOs 
+NestJS has a diffent point of view. Usually the MVC approach is more used in Spring like application.
+But in this framework the view is more related to the *feature*, this is the main difference:
+
+*MVC style*:
+
+```
+controllers/
+   PetController.ts
+   OwnerController.ts
+
+services/
+   PetService.ts
+   OwnerService.ts
+
+models/
+
+```
+
+*feature-based*:
+
+```
+modules/
+  pets/
+     pets.controller.ts
+     pets.service.ts
+     dto/
+  owners/
+     owners.controller.ts
+     owners.service.ts
+     dto/
+
+```
