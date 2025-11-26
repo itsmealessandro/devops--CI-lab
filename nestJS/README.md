@@ -47,8 +47,8 @@ In the `app.module.ts` are defined some decorators that are conceptually similar
 
 `exports`: `@Bean` shared the function that the component providers with the others.
 
-## Services, Controllers, DTOs 
-NestJS has a diffent point of view. Usually the MVC approach is more used in Spring like application.
+## Services, Controllers, DTOs structure
+NestJS has a different point of view. Usually the MVC approach is more used in Spring like application.
 But in this framework the view is more related to the *feature*, this is the main difference:
 
 *MVC style*:
@@ -79,4 +79,39 @@ modules/
      owners.service.ts
      dto/
 
+```
+
+### DTOs utilization
+The idea is to define the entity attributes in its own file. The DTO is used to elaborate that entity from and to external clients.
+When we get an HTTP call from an external client that get's handled from one of our controllers,
+we use the DTO to transform the JSON of the entity into a JS object, ofc with the necessary data validation.
+
+> [!NOTE]
+> The DTO does not create the entity obj type, it creates a specific type depending on the client request.
+> The process of entity creation is done in the service!
+
+Controller use of the DTO:
+
+``` javascript
+@Post()
+create(@Body() createPetDto: CreatePetDto) {
+  return this.petsService.create(createPetDto);
+}
+```
+
+Service use of the DTO:
+
+``` javascript
+create(dto: CreatePetDto): Pet {
+  const newPet: Pet = {
+    id: this.idCounter++,
+    name: dto.name,
+    birthDate: new Date(dto.birthDate),
+    type: dto.type,
+    ownerId: dto.ownerId,
+  };
+
+  this.pets.push(newPet);
+  return newPet;
+}
 ```
